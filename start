@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cargo clean
+
+cargo  build --release
+
+PROJECT_NAME='custom-gpt'
+
+CURRENT_DIR=$(cd `dirname $0`; pwd)
+
+PID=$(ps -ef | grep $PROJECT_NAME | grep -v grep | awk 'NR==1 {print $2}')
+
+#echo "Surviving process pid：${PID}"
+
+if [  $PID ] ; then
+        kill -9 $PID
+        echo "Kill process pid: ${PID}"
+fi
+
+
+nohup target/release/$PROJECT_NAME  >/dev/null 2>&1&
