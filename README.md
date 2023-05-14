@@ -1,9 +1,9 @@
 
 
 #### 使用rust开发chat-gpt接口
-##### 第一阶段开发 Chat (including SSE streaming)功能
+##### 第一阶段开发 Chat (including SSE streaming)和 Completions 功能
 ```
-聊天
+chat
   curl \
 	-u 'test:password01!' \
 	-X POST '206.119.168.188:19002/chat' \
@@ -12,11 +12,12 @@
 ```
 
 ```
+completion
   curl \
 	-u 'test:password01!' \
 	-X POST '206.119.168.188:19002/completion' \
 	-H 'Content-Type: application/json ' \
-	-d '{ "msg":"就算全世界离开你" }'
+	-d '{ "msg":"你好","model":"text-davinci-003","max_token":7,"temperature":0}'	
 
 ```
 
