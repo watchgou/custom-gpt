@@ -1,5 +1,5 @@
 use async_openai::{
-    types::{CompletionResponseStream, CreateCompletionRequestArgs, Role},
+    types::{ CreateCompletionRequestArgs},
     Client,
 };
 
