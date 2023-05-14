@@ -19,7 +19,8 @@ stop)
                 echo "Kill process pid: ${PID}"
         fi
         ;;
-build-start)
+build-restart)
+        "$0" stop
         cargo clean
         cargo build --release
         "$0" start
