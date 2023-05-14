@@ -1,7 +1,7 @@
 
 
 #### 使用rust开发chat-gpt接口
-
+##### 第一阶段开发 Chat (including SSE streaming)功能
 ```
   curl \
 	-u 'test:password01!' \
