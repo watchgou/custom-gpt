@@ -12,11 +12,16 @@ use async_openai::types::{ChatChoice, Choice};
 
 use serde::{Deserialize, Serialize};
 #[derive(Deserialize)]
-pub struct Message {
+pub struct CompletionMessage {
     pub msg: String,
     pub model: String,
     pub max_token: u16,
     pub temperature: f32,
+}
+
+#[derive(Deserialize)]
+pub struct ChatMessage {
+    pub msg: String
 }
 
 #[derive(Debug, Serialize, Deserialize)]

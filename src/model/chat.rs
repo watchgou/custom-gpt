@@ -8,7 +8,7 @@ use super::*;
 //use super::CHAT_GPT_MODEL;
 
 pub async fn chat(
-    Json(_mesage): Json<Message>,
+    Json(_mesage): Json<ChatMessage>,
     models: &str,
     many_chat: &str,
 ) -> impl IntoResponse {
