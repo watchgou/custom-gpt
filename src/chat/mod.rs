@@ -5,6 +5,8 @@ use async_openai::{
 use axum::{http::StatusCode, response::IntoResponse, Json};
 use serde::{Deserialize, Serialize};
 
+//use super::CHAT_GPT_MODEL;
+
 #[derive(Deserialize)]
 pub struct Message {
     pub msg: String,
@@ -17,7 +19,8 @@ pub struct ChatResult {
     pub msg: String,
 }
 
-pub async fn chat(Json(_mesage): Json<Message>) ->impl IntoResponse {
+pub async fn chat(Json(_mesage): Json<Message>,models:&str) ->impl IntoResponse {
+
     // create client, reads OPENAI_API_KEY environment variable for API key.
     let  client: Client = Client::new();
     let mut message = ChatCompletionRequestMessage::default();
@@ -27,7 +30,7 @@ pub async fn chat(Json(_mesage): Json<Message>) ->impl IntoResponse {
 
     let request = CreateChatCompletionRequestArgs::default()
         .messages(msg_vec)
-        .model("gpt-3.5-turbo")
+        .model(models)
         .n(1)
         .user("async-openai")
         .build();

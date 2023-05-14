@@ -4,6 +4,10 @@ cargo clean
 
 cargo  build --release
 
+export CHAT_GPT_MODEL='gpt-3.5-turbo'
+
+export MANY_CHAT=1
+
 PROJECT_NAME='custom-gpt'
 
 CURRENT_DIR=$(cd `dirname $0`; pwd)
