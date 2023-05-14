@@ -17,7 +17,7 @@ completion
 	-u 'test:password01!' \
 	-X POST '206.119.168.188:19002/completion' \
 	-H 'Content-Type: application/json ' \
-	-d '{ "msg":"就算全世界离开你","model":"text-davinci-003","max_token":7,"temperature":0}'	
+	-d '{ "msg":"就算全世界离开你"}'	
 
 ```
 
