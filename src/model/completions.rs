@@ -1,5 +1,5 @@
 use async_openai::{
-    types::{ CreateCompletionRequestArgs},
+    types::{ CreateCompletionRequestArgs,Prompt},
     Client,
 };
 
@@ -11,6 +11,7 @@ pub async fn completion(Json(_mesage): Json<Message>, models: &str, many_chat: &
     let many: u8 = many_chat.parse::<u8>().unwrap();
     let client: Client = Client::new();
     let request=CreateCompletionRequestArgs::default()
+        .prompt(Prompt::String(_mesage.msg))
         .model(models)
         .n(many)
         .user("async-openai")
