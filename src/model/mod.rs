@@ -6,16 +6,15 @@ pub mod completions;
 
 pub use completions::*;
 
-
-use async_openai::{
-    types::{ChatChoice,Choice},
-    
-};
+use async_openai::types::{ChatChoice, Choice};
 
 use serde::{Deserialize, Serialize};
 #[derive(Deserialize)]
 pub struct Message {
     pub msg: String,
+    pub model: String,
+    pub max_token: u16,
+    pub temperature: f32,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -24,7 +23,6 @@ pub struct ChatResult {
     pub data: Vec<ChatChoice>,
     pub msg: String,
 }
-
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct CompletionResult {

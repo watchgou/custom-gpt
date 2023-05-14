@@ -18,7 +18,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         )
         .route(
             "/completion",
-            post(|request_dody| async { model::completion(request_dody, models, many_chat).await }),
+            post(|request_dody| async { model::completion(request_dody, many_chat).await }),
         )
         .route_layer(ValidateRequestHeaderLayer::basic("test", "password01!"));
     let addr = SocketAddr::from(([0, 0, 0, 0], 19002));
