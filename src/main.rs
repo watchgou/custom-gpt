@@ -1,4 +1,4 @@
-mod chat;
+mod model;
 use axum::{routing::post, Router};
 use std::env;
 use std::net::SocketAddr;
@@ -14,10 +14,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let app = Router::new()
         .route(
             "/chat",
-            post(|request_dody| async {
-
-                 chat::chat(request_dody, models,many_chat).await 
-                }),
+            post(|request_dody| async { model::chat(request_dody, models, many_chat).await }),
+        )
+        .route(
+            "/completion",
+            post(|request_dody| async { model::completion(request_dody, models, many_chat).await }),
         )
         .route_layer(ValidateRequestHeaderLayer::basic("test", "password01!"));
     let addr = SocketAddr::from(([0, 0, 0, 0], 19002));

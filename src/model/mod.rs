@@ -1,0 +1,34 @@
+pub mod chat;
+
+pub use chat::*;
+
+pub mod completions;
+
+pub use completions::*;
+
+
+use async_openai::{
+    types::{ChatChoice,Choice},
+    
+};
+
+use serde::{Deserialize, Serialize};
+#[derive(Deserialize)]
+pub struct Message {
+    pub msg: String,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct ChatResult {
+    pub code: u8,
+    pub data: Vec<ChatChoice>,
+    pub msg: String,
+}
+
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct CompletionResult {
+    pub code: u8,
+    pub data: Vec<Choice>,
+    pub msg: String,
+}
