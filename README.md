@@ -10,5 +10,7 @@
 	-d '{ "msg":"你好" }'
 ```
 
+##### 后续准备开发🔂 Images、Completions (including SSE streaming)、Audio
+
 
 
