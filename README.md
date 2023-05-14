@@ -1,3 +1,3 @@
 
 
-``` rust 实现开发  chat-gpt ```
+``` 使用rust开发chat-gpt接口```
