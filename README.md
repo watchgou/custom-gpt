@@ -1,7 +1,7 @@
 
 
 #### 使用rust开发chat-gpt接口
-##### 第一阶段开发 Chat (including SSE streaming)和 Completions 功能
+##### 第一阶段开发 Chat (including SSE streaming)和 Completions (including SSE streaming) 功能
 ```
 chat
   curl \
@@ -21,7 +21,7 @@ completion
 
 ```
 
-##### 后续准备开发🔂 Images、Completions (including SSE streaming)、Audio
+##### 后续准备开发🔂 Images、Audio
 
 
 
