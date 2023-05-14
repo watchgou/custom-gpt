@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+PROJECT_NAME='custom-gpt'
+
+
+PID=$(ps -ef | grep $PROJECT_NAME | grep -v grep | awk 'NR==1 {print $2}')
+
+#echo "Surviving process pid：${PID}"
+
+if [  $PID ] ; then
+        kill -9 $PID
+        echo "Kill process pid: ${PID}"
+fi
