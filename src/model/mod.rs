@@ -6,6 +6,8 @@ pub mod completions;
 
 pub use completions::*;
 
+
+
 use async_openai::types::{ChatChoice, Choice};
 
 use serde::{Deserialize, Serialize};

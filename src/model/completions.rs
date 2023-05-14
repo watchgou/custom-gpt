@@ -7,6 +7,7 @@ use axum::{http::StatusCode, response::IntoResponse, Json};
 
 use super::*;
 
+// 补全
 pub async fn completion(Json(_mesage): Json<Message>, many_chat: &str) -> impl IntoResponse {
     let many: u8 = many_chat.parse::<u8>().unwrap();
     let client: Client = Client::new();
