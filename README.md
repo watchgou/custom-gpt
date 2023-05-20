@@ -5,18 +5,20 @@
 ```
 chat
   curl \
-	-u 'test:password01!' \
+	
 	-X POST '206.119.168.188:19002/chat' \
 	-H 'Content-Type: application/json ' \
+	-H 'authorization:eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU46OlVTRVIiLCJ0b2tlbklkIjoiZDhiMDkxYTlmYmQ0NDcyZThiYmZkMWIzNWIzNThlMjEiLCJ1c2VyTmFtZSI6ImFkbWluIiwiZXhwIjoxNjg0NjA1OTk2fQ.91douCfJo0Jyj9js2KWlyLvqrHLLhRiUw6ltNMwOVY8' \
 	-d '{ "msg":"你好" }'
 ```
 
 ```
 completion
   curl \
-	-u 'test:password01!' \
+	
 	-X POST '206.119.168.188:19002/completion' \
 	-H 'Content-Type: application/json ' \
+	-H 'authorization:eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU46OlVTRVIiLCJ0b2tlbklkIjoiZDhiMDkxYTlmYmQ0NDcyZThiYmZkMWIzNWIzNThlMjEiLCJ1c2VyTmFtZSI6ImFkbWluIiwiZXhwIjoxNjg0NjA1OTk2fQ.91douCfJo0Jyj9js2KWlyLvqrHLLhRiUw6ltNMwOVY8' \
 	-d '{ "msg":"就算全世界离开你"}'	
 
 ```
