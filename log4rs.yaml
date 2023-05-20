@@ -9,13 +9,6 @@ appenders:
     kind: console
     encoder:
       pattern: "h({d(%Y-%m-%d %H:%M:%S) {M}:{m}{n}"
-  file:
-    kind: file
-    #日志保存路径
-    path: "logs/loger.log"
-    encoder:
-      #log 信息格式
-      pattern: "{d} {l} {M} :{m}{n}"
   rolling_file:
     kind: rolling_file
     path: "logs/rolling.log"

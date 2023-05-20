@@ -10,14 +10,13 @@ use async_openai::types::{ChatChoice, Choice};
 
 use serde::{Deserialize, Serialize};
 
-use std::marker::PhantomData ;
+use std::marker::PhantomData;
 
 use tower_http::validate_request::ValidateRequest;
 
-
 use hyper::{Request, Response};
 
-use log::{info,error};
+use log::{error, info};
 
 #[derive(Serialize, Deserialize, Default, Debug)]
 pub struct Message {
@@ -57,7 +56,7 @@ fn default_temperature() -> f32 {
 }
 
 pub struct Authorization<ResBody> {
-   pub _ty: PhantomData<fn() -> ResBody>,
+    pub _ty: PhantomData<fn() -> ResBody>,
 }
 
 impl<ResBody> Clone for Authorization<ResBody> {
@@ -72,21 +71,18 @@ where
 {
     type ResponseBody = ResBody;
     fn validate(&mut self, request: &mut Request<B>) -> Result<(), Response<Self::ResponseBody>> {
-
-        let auth=request.headers().get(http::header::AUTHORIZATION);
+        let auth = request.headers().get(http::header::AUTHORIZATION);
         match auth {
-            Some(a)=>{
-        
-                info!("authorization {:?}",a);
+            Some(a) => {
+                info!("authorization {:?}", a);
                 Ok(())
-            },
-             e=> {
-                error!("{:?}",e);
-                 let mut res = Response::new(ResBody::default());
+            }
+            e => {
+                error!("{:?}", e);
+                let mut res = Response::new(ResBody::default());
                 *res.status_mut() = axum::http::StatusCode::UNAUTHORIZED;
                 Err(res)
-             },
+            }
         }
-       
     }
 }

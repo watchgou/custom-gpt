@@ -22,7 +22,10 @@ pub async fn completion(Json(_mesage): Json<Message>, many_chat: &str) -> impl I
 
     let request = match request {
         Ok(request) => request,
-        Err(_) => panic!("error"),
+        Err(e) => {
+            log::error!("{:?}", e);
+            panic!("error")
+        }
     };
     let respose = client.completions().create(request).await;
 

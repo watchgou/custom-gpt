@@ -4,6 +4,8 @@ use async_openai::{
 };
 use axum::{http::StatusCode, response::IntoResponse, Json};
 
+use log::error;
+
 use super::*;
 //use super::CHAT_GPT_MODEL;
 
@@ -29,7 +31,10 @@ pub async fn chat(
 
     let request = match request {
         Ok(request) => request,
-        Err(_) => panic!("error"),
+        Err(e) => {
+            error!("{:?}", e);
+            panic!()
+        }
     };
 
     let respose = client.chat().create(request).await;
