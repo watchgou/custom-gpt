@@ -17,7 +17,7 @@ use tower_http::validate_request::ValidateRequest;
 
 use hyper::{Request, Response};
 
-use log::info;
+use log::{info,error};
 
 #[derive(Serialize, Deserialize, Default, Debug)]
 pub struct Message {
@@ -80,7 +80,8 @@ where
                 info!("authorization {:?}",a);
                 Ok(())
             },
-             _ => {
+             e=> {
+                error!("{:?}",e);
                  let mut res = Response::new(ResBody::default());
                 *res.status_mut() = axum::http::StatusCode::UNAUTHORIZED;
                 Err(res)
