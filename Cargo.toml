@@ -13,7 +13,9 @@ axum ={version="0.6",features=["multipart"]}
 serde = { version = "1.0.16", features = ["derive"] }
 tower = { version = "0.4", features = ["full"] }
 tower-http = { version = "0.4", features = ["full"] }
-
+http = "0.2.9"
+hyper = "0.14"
+http-body = "0.4.5"
 
 [dev-dependencies]
 async-openai = "0.10.0"

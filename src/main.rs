@@ -1,12 +1,12 @@
 mod model;
 use axum::{routing::post, Router};
 use std::env;
-use std::net::SocketAddr;
+use std::{marker::PhantomData, net::SocketAddr};
+
 use tower_http::validate_request::ValidateRequestHeaderLayer;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-
     //加载环境变量 string 转 成 &'static str
     let models: &'static str = Box::leak(env::var("CHAT_GPT_MODEL").unwrap().into_boxed_str());
     //加载环境变量 string 转 成 &'static str
@@ -21,7 +21,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             "/completion",
             post(|request_dody| async { model::completion(request_dody, many_chat).await }),
         )
-        .route_layer(ValidateRequestHeaderLayer::basic("test", "password01!"));
+        .route_layer(ValidateRequestHeaderLayer::custom(model::Authorization {
+            _ty: PhantomData,
+        }));
+
     let addr = SocketAddr::from(([0, 0, 0, 0], 19002));
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
