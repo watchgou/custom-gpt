@@ -17,6 +17,8 @@ use tower_http::validate_request::ValidateRequest;
 
 use hyper::{Request, Response};
 
+use log::{info, trace, warn};
+
 #[derive(Serialize, Deserialize, Default, Debug)]
 pub struct Message {
     pub msg: String,
@@ -54,8 +56,6 @@ fn default_temperature() -> f32 {
     0.0
 }
 
-
-
 pub struct Authorization<ResBody> {
    pub _ty: PhantomData<fn() -> ResBody>,
 }
@@ -76,7 +76,8 @@ where
         let auth=request.headers().get(http::header::AUTHORIZATION);
         match auth {
             Some(a)=>{
-                println!("Bearer {:?}",a.to_str());
+        
+                info!("authorization {:?}",a);
                 Ok(())
             },
              _ => {
