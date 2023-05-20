@@ -17,7 +17,7 @@ use tower_http::validate_request::ValidateRequest;
 
 use hyper::{Request, Response};
 
-use log::{info, trace, warn};
+use log::info;
 
 #[derive(Serialize, Deserialize, Default, Debug)]
 pub struct Message {
