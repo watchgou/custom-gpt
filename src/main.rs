@@ -7,7 +7,7 @@ use tower_http::validate_request::ValidateRequestHeaderLayer;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    log4rs::init_file("log4rs.yml", Default::default()).unwrap();
+    log4rs::init_file("log4rs.yaml", Default::default()).unwrap();
 
     //加载环境变量 string 转 成 &'static str
     let models: &'static str = Box::leak(env::var("CHAT_GPT_MODEL").unwrap().into_boxed_str());
