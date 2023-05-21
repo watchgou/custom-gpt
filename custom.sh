@@ -10,7 +10,6 @@ case "$1" in
 start)
         CURRENT_DIR=$(cd `dirname $0`; pwd)
         nohup $CURRENT_DIR/target/release/$PROJECT_NAME >/dev/null 2>&1 &
-
         ;;
 stop)
         PID=$(ps -ef | grep $PROJECT_NAME | grep -v grep | awk 'NR==1 {print $2}')

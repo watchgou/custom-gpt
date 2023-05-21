@@ -14,6 +14,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     //加载环境变量 string 转 成 &'static str
     let many_chat: &'static str = Box::leak(env::var("MANY_CHAT").unwrap().into_boxed_str());
 
+    let static_file =
+        Router::new().nest_service("/gpt", tower_http::services::ServeDir::new("./static/"));
+
     let app = Router::new()
         .route(
             "/chat",
@@ -26,10 +29,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .route_layer(ValidateRequestHeaderLayer::custom(model::Authorization {
             _ty: PhantomData,
         }));
-
+    let all = Router::new().merge(static_file).merge(app);
     let addr = SocketAddr::from(([0, 0, 0, 0], 19002));
     axum::Server::bind(&addr)
-        .serve(app.into_make_service())
+        .serve(all.into_make_service())
         .await
         .unwrap();
     Ok(())
