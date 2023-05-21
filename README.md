@@ -2,8 +2,9 @@
 
 #### 使用rust开发chat-gpt接口
 ##### 第一阶段开发 Chat (including SSE streaming)和 Completions (including SSE streaming) 功能
+<a href="http://170.106.154.186:19002/gpt/index.html" title="">网页</a>
+#### chat
 ```
-chat
   curl \
 	-X POST '170.106.154.186:19002/chat' \
 	-H 'Content-Type: application/json ' \
@@ -11,8 +12,8 @@ chat
 	-d '{ "msg":"你好" }'
 ```
 
+#### completion
 ```
-completion
   curl \
 	-X POST '170.106.154.186:19002/completion' \
 	-H 'Content-Type: application/json ' \
