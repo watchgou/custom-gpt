@@ -77,8 +77,8 @@ where
                 info!("authorization {:?}", a);
                 Ok(())
             }
-            e => {
-                error!("{:?}", e);
+            None => {
+                error!("{:?}", "token none");
                 let mut res = Response::new(ResBody::default());
                 *res.status_mut() = axum::http::StatusCode::UNAUTHORIZED;
                 Err(res)
