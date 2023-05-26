@@ -55,33 +55,34 @@ fn default_temperature() -> f32 {
     0.0
 }
 
-pub struct Authorization<ResBody> {
-    pub _ty: PhantomData<fn() -> ResBody>,
+pub struct Authorization<T> {
+    pub _ty: PhantomData<fn() -> T>,
 }
 
-impl<ResBody> Clone for Authorization<ResBody> {
+impl<T> Clone for Authorization<T> {
     fn clone(&self) -> Self {
         Self { _ty: PhantomData }
     }
 }
 
-impl<B, ResBody> ValidateRequest<B> for Authorization<ResBody>
+impl<B, T> ValidateRequest<B> for Authorization<T>
 where
-    ResBody: http_body::Body + Default,
+    T: http_body::Body + Default,
 {
-    type ResponseBody = ResBody;
+    type ResponseBody = T;
     fn validate(&mut self, request: &mut Request<B>) -> Result<(), Response<Self::ResponseBody>> {
         let auth = request.headers().get(http::header::AUTHORIZATION);
         match auth {
-            Some(a) => {
-                info!("authorization {:?}", a);
+            Some(token) => {
+                info!("authorization {:?}", token);
+                // 验证 token 有效性
                 Ok(())
             }
             None => {
                 error!("{:?}", "token none");
-                let mut res = Response::new(ResBody::default());
-                *res.status_mut() = axum::http::StatusCode::UNAUTHORIZED;
-                Err(res)
+                let mut response: Response<T> = Response::new(T::default());
+                *response.status_mut() = axum::http::StatusCode::UNAUTHORIZED;
+                Err(response)
             }
         }
     }
