@@ -18,11 +18,11 @@ stop)
                 echo "Kill process pid: ${PID}"
         fi
         ;;
-build-restart)
+build)
         "$0" stop
-        cargo clean
-        cargo build --release
-        "$0" start
+        cargo clean && cargo build --release
+        rm -rf custom-release && mkdir custom-release && cp ./target/release/$PROJECT_NAME ./custom-release && cp ./log4rs.yaml ./custom-release && cp -r ./static ./custom-release &&  cp ./custom.sh ./custom-release
+        tar -cvf customGpt.tar.gz ./custom-release
+        rm -rf custom-release
         ;;
-
 esac

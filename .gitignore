@@ -2,3 +2,5 @@
 /Cargo.lock
 /logs
 /.gitignore
+./custom-release
+./customGpt.tar.gz
