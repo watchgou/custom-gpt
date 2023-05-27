@@ -1,0 +1,40 @@
+.dialog-box {
+    position: absolute;
+    bottom: 5%;
+    top: 10%;
+    left: 15%;
+    right: 15%;
+    background-color: #FFFFFF;
+    border: 2px solid;
+    border-top-left-radius: 3em;
+    border-top-right-radius: 3em;
+    border-bottom-right-radius: 2em;
+    border-bottom-left-radius: 2em;
+}
+
+.message-div {
+    height: 70%;
+    background-color: #FFFFFF;
+    border: 2px solid;
+    border-top-left-radius: 2.8em;
+    border-top-right-radius: 2.8em;
+
+}
+
+.input-div {
+    height: 30%;
+    background-color: #f3f1f1;
+    border: 2px solid;
+    border-bottom-right-radius: 2.2em;
+    border-bottom-left-radius: 2.2em;
+}
+
+.text-tarea {
+
+    height: 70%;
+}
+
+.text-class {
+    word-break: break-all;
+    overflow: auto;
+}
